@@ -1,0 +1,16 @@
+[db]
+172.31.29.151
+
+[backend]
+172.31.28.43
+
+[frontend]
+34.229.96.169
+
+[all:children]
+db
+backend
+frontend
+
+[all:vars]
+ansible_password=DevOps321
