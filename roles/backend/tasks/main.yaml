@@ -16,21 +16,26 @@ ansible.builtin.command: dnf module disable nodejs -y
   ansible.builtin.user:
     name: expense
 
-- name: create a new directory 'app'
-  ansible.builtin.file:
-    path: /app
-    state: directory
+- name: run app pre-requisites
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-pre-req
 
-- name: download backend code
-  ansible.builtin.get_url:
-    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-    dest: /tmp/backend.zip
+# - name: create a new directory 'app'
+#   ansible.builtin.file:
+#     path: /app
+#     state: directory
 
-- name: unarchive/unzip backend code
-  ansible.builtin.unarchive:
-    src: /tmp/backend.zip
-    dest: /app
-    remote_src: yes # by default checks in ansible server, so I am giving this so that it will check in remote server
+# - name: download backend code
+#   ansible.builtin.get_url:
+#     url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+#     dest: /tmp/backend.zip
+
+# - name: unarchive/unzip backend code
+#   ansible.builtin.unarchive:
+#     src: /tmp/backend.zip
+#     dest: /app
+#     remote_src: yes # by default checks in ansible server, so I am giving this so that it will check in remote server
 
 - name: download npm Dependencies
   ansible.builtin.command: npm install

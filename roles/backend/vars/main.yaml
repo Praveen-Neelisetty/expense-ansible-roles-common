@@ -1,4 +1,6 @@
-login_user = root
-login_password = ExpenseApp@1
-login_host = db.praveen.store
-DB_HOST = db.praveen.store
+login_user: root
+login_password: ExpenseApp@1
+login_host: db.praveen.store
+DB_HOST: db.praveen.store
+component: backend
+app_location: /app
